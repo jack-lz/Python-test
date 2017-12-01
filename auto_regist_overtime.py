@@ -108,7 +108,7 @@ def HTMLSaveToMySQL(RespHTML, timeSelect):
             cur.execute("""truncate table PREV_Month_TABLE""" )
            
         soup = BeautifulSoup(RespHTML)
-        print "\n\n===================================考勤记录======================================"
+        print "\n\n===========================================考勤记录=============================================="
         print "%12s | %5s | %8s | %8s | %8s | %10s | %10s | %10s | %10s |"\
             % ("日期", "星期", "刷卡次数", "出勤时间", "离勤时间", "迟到(分钟)", "早退(分钟)", "矿工(小时)", "事由")
         for table in soup.findAll('table'):
@@ -215,7 +215,7 @@ def RegistOverTime(reason, start_date, start_time, end_date, end_time) :
 def registFromSQL(timeSelect) :
     # 获取已经申请的加班记录
     record = QueryRegistedRecord()
-    print "\n\n==================================已申请记录====================================="
+    print "\n\n=================================================已申请记录===================================================="
     print '目前最近一次已申请的加班记录是：%s 的！\n'% record
     last_record = record.replace('-','')
     regist_result = False
@@ -244,7 +244,7 @@ def registFromSQL(timeSelect) :
     cur = conn.cursor()
     try :
         cur.execute("""use KaoQin""" )
-        print "\n=================================本次申请记录===================================="
+        print "\n================================================本次申请记录==================================================="
         if 'RadioButtonTHIS_MONTH' == timeSelect :
             cur.execute("""select * from THIS_Month_TABLE""");
             kaoQinTable = cur.fetchall()
@@ -269,7 +269,7 @@ def registFromSQL(timeSelect) :
                         start_time = "18:30"
                         end_time = Rounding_leave(str(row[4]))
                         regist_response = Registovertime(reason, start_date, start_time, end_date, end_time)
-                        
+
                         submit_reason = regist_response.find(id = 'Table_LEAVE_TYPE').find('tr').find('input')['value'].strip("\n").encode('utf-8')
                         submit_timelist = regist_response.find(id = 'Table_3').find(id = 'GridViewLINE').findAll('tr')[1].findAll('td')
                         submit_startDate = submit_timelist[0].text.encode('utf-8').strip("\n")
@@ -317,7 +317,7 @@ def registFromSQL(timeSelect) :
         elif 'RadioButtonPREV_MONTH' == timeSelect :
             cur.execute("select * from PREV_Month_TABLE");
             kaoQinTable = cur.fetchall()
-            num = 0
+            num = 1
             for row in kaoQinTable :
                 date = row[0].strftime('%Y%m%d')
                 if date == today.strftime('%Y%m%d') :  # 去掉今天的
@@ -385,7 +385,7 @@ def registFromSQL(timeSelect) :
         wb.save(excel_name)
         regist_result = True
     except Exception as e:
-        print e 
+        print e
         conn.rollback()#回滚事务 
 
     # 一如既往的，用完了之后记得关闭cursor，然后关闭链接
@@ -417,27 +417,36 @@ def Rounding_come(time) :
     return come_time
 
 def QueryOvertimeReason(date):
-    taskNote_showURL = "http://172.26.181.54/showcalendar.asp"
-    taskNote_finishURL = "http://172.26.181.54/showfinishstatus.asp"
-    taskNote_data = urllib.urlencode({
-        "startDay":date})
-    myopener2 = urllib2.build_opener()
-    urllib2.install_opener
-    show_request = urllib2.Request(taskNote_showURL, taskNote_data)
-    show_response = myopener2.open(show_request).read()
-    sliptStr = show_response.split('刘振</FONT>')[-1].split('刘虎</FONT>')[0]
-    show_soup = BeautifulSoup(sliptStr)
-    alist = show_soup.findAll('a')
-    if alist :
-        return alist[0].text.encode('utf-8')
-    else :
-        input_reason = raw_input("没有找到%s的加班事由，请现在补充超过三个字的加班理由:"%date)
-        while True :
-            if len(input_reason) >= 10:
-                break
-            else :
-                input_reason = raw_input("输入长度少于三，请重新输入:")
-        return input_reason
+    # taskNote_showURL = "http://172.26.181.54/showcalendar.asp"
+    # taskNote_finishURL = "http://172.26.181.54/showfinishstatus.asp"
+    # taskNote_data = urllib.urlencode({
+    #     "startDay":date})
+    # myopener2 = urllib2.build_opener()
+    # urllib2.install_opener
+    # show_request = urllib2.Request(taskNote_showURL, taskNote_data)
+    # show_response = myopener2.open(show_request).read()
+    # sliptStr = show_response.split('刘振</FONT>')[-1].split('刘虎</FONT>')[0]
+    # show_soup = BeautifulSoup(sliptStr)
+    # alist = show_soup.findAll('a')
+    # if alist :
+    #     return alist[0].text.encode('utf-8')
+    # else :
+    #     input_reason = raw_input("没有找到%s的加班事由，请现在补充超过三个字的加班理由:"%date)
+    #     while True :
+    #         if len(input_reason) >= 10:
+    #             break
+    #         else :
+    #             input_reason = raw_input("输入长度少于三，请重新输入:")
+    #     return input_reason
+    input_reason = raw_input("没有找到%s的加班事由，请现在补充超过三个字的加班理由:"%date)
+    while True :
+        if len(input_reason) >= 10:
+            break
+        else :
+            input_reason = raw_input("输入长度少于三，请重新输入:")
+    time.sleep(1)
+    return input_reason
+
 
 def QueryRegistedRecord():
     Record_URL = 'http://oa-center/Programs/KQ/EmployeeRequestOvertime.aspx'
@@ -522,7 +531,7 @@ __VIEWSTATE = soup.find(id="__VIEWSTATE")['value']
 __EVENTVALIDATION = soup.find(id="__EVENTVALIDATION")['value'] 
 
 while True :
-    print "\n==================================系统登录======================================="
+    print "\n=================================================系统登录======================================================"
     login_username = raw_input("请输入您的工号：")
     login_password = getpass.getpass("请输入OA系统的密码：")
 
@@ -543,7 +552,7 @@ while True :
         print '登录失败!'
 
 
-print "\n\n==================================数据库登录====================================="
+print "\n\n=================================================数据库登录===================================================="
 print("请确保你启动了本地Mysql数据库管理软件!")
 name = raw_input("请输入数据库登录名：")
 password = getpass.getpass("请输入数据库登录密码：")
@@ -552,7 +561,7 @@ password = getpass.getpass("请输入数据库登录密码：")
 #选择功能
 while True :
     fun_select = raw_input("""
-\n===================================功能选择======================================
+\n==================================================功能选择=====================================================
 0: 退出程序
 1: 本月加班申请
 2：上月加班申请
@@ -568,7 +577,7 @@ elif 1 == int(fun_select) :
     HTMLSaveToMySQL(kaoqinRespHTML, 'RadioButtonTHIS_MONTH')
     registResult = registFromSQL('RadioButtonTHIS_MONTH')
     if registResult :
-        print "\n\n===================================处理完成======================================"
+        print "\n\n==================================================处理完成====================================================="
         print "本次申请详细记录保存当前目录，文件名为：%s\n\n" % excel_name
     else:
         print "执行过程中出现错误或该日期已经不能申请加班，请查询！"
@@ -577,7 +586,7 @@ elif 2 == int(fun_select) :
     HTMLSaveToMySQL(kaoqinRespHTML, 'RadioButtonPREV_MONTH')
     registResult =  registFromSQL('RadioButtonPREV_MONTH') 
     if registResult :
-        print "\n\n===================================处理完成======================================"
+        print "\n\n==================================================处理完成====================================================="
         print "本次申请详细记录保存在当前目录，文件名为：%s\n\n" % excel_name
     else:
         print "执行过程中出现错误或该日期已经不能申请加班，请查询！"
