@@ -277,7 +277,7 @@ def registFromSQL(timeSelect) :
                         submit_startTime = submit_timelist[2].text.encode('utf-8').strip("\n")
                         submit_endTime = submit_timelist[3].text.encode('utf-8').strip("\n")
                         submit_tuple = (num, submit_startDate, submit_endDate, submit_startTime ,submit_endTime, submit_reason)
-                        print "%d、起始日期:%5s  终止日期:%5s  起始时间:%5s  终止时间:%5s  加班事由:%s"%submit_tuple               
+                        print "%2d、起始日期:%5s  终止日期:%5s  起始时间:%5s  终止时间:%5s  加班事由:%s"%submit_tuple               
                         for i in range(6) :
                             ws.write(num, i, submit_tuple[i])
                         num += 1
@@ -307,7 +307,7 @@ def registFromSQL(timeSelect) :
                             submit_startTime = submit_timelist[2].text.encode('utf-8').strip("\n")
                             submit_endTime = submit_timelist[3].text.encode('utf-8').strip("\n")
                             submit_tuple = (num, submit_startDate, submit_endDate, submit_startTime ,submit_endTime, submit_reason)
-                            print "%d、起始日期:%5s  终止日期:%5s  起始时间:%5s  终止时间:%5s  加班事由:%s"%submit_tuple               
+                            print "%2d、起始日期:%5s  终止日期:%5s  起始时间:%5s  终止时间:%5s  加班事由:%s"%submit_tuple               
                             for i in range(6) :
                                 ws.write(num, i, submit_tuple[i])
                             num += 1
@@ -438,13 +438,13 @@ def QueryOvertimeReason(date):
     #         else :
     #             input_reason = raw_input("输入长度少于三，请重新输入:")
     #     return input_reason
-    input_reason = raw_input("没有找到%s的加班事由，请现在补充超过三个字的加班理由:"%date)
+    input_reason = "要件分析-TMC指摘" #raw_input("没有找到%s的加班事由，请现在补充超过三个字的加班理由:"%date)
     while True :
         if len(input_reason) >= 10:
             break
         else :
             input_reason = raw_input("输入长度少于三，请重新输入:")
-    time.sleep(1)
+    time.sleep(2)
     return input_reason
 
 
