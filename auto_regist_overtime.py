@@ -438,7 +438,7 @@ def QueryOvertimeReason(date):
     #         else :
     #             input_reason = raw_input("输入长度少于三，请重新输入:")
     #     return input_reason
-    input_reason = "要件分析-TMC指摘" #raw_input("没有找到%s的加班事由，请现在补充超过三个字的加班理由:"%date)
+    input_reason = "VR_测试工具开发_图像识别" #raw_input("没有找到%s的加班事由，请现在补充超过三个字的加班理由:"%date)
     while True :
         if len(input_reason) >= 10:
             break
