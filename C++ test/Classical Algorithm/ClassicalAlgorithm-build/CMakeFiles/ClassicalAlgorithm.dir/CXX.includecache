@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/liuzhen/Python test/C++ test/Classical Algorithm/ClassicalAlgorithm/Sort.cpp
+Sort.h
+/home/liuzhen/Python test/C++ test/Classical Algorithm/ClassicalAlgorithm/Sort.h
+
+/home/liuzhen/Python test/C++ test/Classical Algorithm/ClassicalAlgorithm/Sort.h
+
+/home/liuzhen/Python test/C++ test/Classical Algorithm/ClassicalAlgorithm/StrRelate.cpp
+stdio.h
+-
+iostream
+-
+StrRelate.h
+/home/liuzhen/Python test/C++ test/Classical Algorithm/ClassicalAlgorithm/StrRelate.h
+string.h
+/home/liuzhen/Python test/C++ test/Classical Algorithm/ClassicalAlgorithm/string.h
+assert.h
+/home/liuzhen/Python test/C++ test/Classical Algorithm/ClassicalAlgorithm/assert.h
+
+/home/liuzhen/Python test/C++ test/Classical Algorithm/ClassicalAlgorithm/StrRelate.h
+
+/home/liuzhen/Python test/C++ test/Classical Algorithm/ClassicalAlgorithm/main.cpp
+iostream
+-
+Sort.h
+/home/liuzhen/Python test/C++ test/Classical Algorithm/ClassicalAlgorithm/Sort.h
+StrRelate.h
+/home/liuzhen/Python test/C++ test/Classical Algorithm/ClassicalAlgorithm/StrRelate.h
+

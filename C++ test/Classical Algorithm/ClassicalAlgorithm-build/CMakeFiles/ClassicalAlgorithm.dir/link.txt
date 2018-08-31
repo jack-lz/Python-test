@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -static-libstdc++ -pthread -Wall -Wextra -g   CMakeFiles/ClassicalAlgorithm.dir/Sort.cpp.o CMakeFiles/ClassicalAlgorithm.dir/StrRelate.cpp.o CMakeFiles/ClassicalAlgorithm.dir/main.cpp.o  -o ClassicalAlgorithm -rdynamic 

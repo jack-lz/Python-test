@@ -1,0 +1,3 @@
+/home/liuzhen/Python test/C++ test/quicksort-build/CMakeFiles/rebuild_cache.dir
+/home/liuzhen/Python test/C++ test/quicksort-build/CMakeFiles/edit_cache.dir
+/home/liuzhen/Python test/C++ test/quicksort-build/CMakeFiles/quicksort.dir
